@@ -20,7 +20,11 @@ public class LikeServiceImplementation implements LikeService{
         return likeRepo.findBypostorcommentId(postOrCommentId);
     }
 
-
+    @Override
+    public Like createLike(String postOrCommentId, Like like) {
+        like.setCreatedAt(LocalDate.now());
+        return likeRepo.save(like);
+    }
     @Override
     public Integer getLikesCount(String postOrCommentId) {
          List<Like> likeList=(likeRepo.findBypostorcommentId(postOrCommentId));
