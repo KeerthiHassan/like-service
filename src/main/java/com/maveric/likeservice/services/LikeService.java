@@ -9,5 +9,5 @@ public interface LikeService {
     Like createLike(String postOrCommentId,Like like);
     Integer getLikesCount(String postOrCommentId);
     Like getLikeDetails(String postOrCommentId,String likeId);
-
+    String removeLike(String postOrCommentId,String likeId);
 }
