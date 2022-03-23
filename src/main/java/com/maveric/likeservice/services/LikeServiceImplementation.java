@@ -35,8 +35,11 @@ public class LikeServiceImplementation implements LikeService{
     @Override
     public Like getLikeDetails(String postOrCommentId,String likeId) {
         return likeRepo.findBylikeId(likeId);
-
     }
-
+    @Override
+    public String removeLike(String postOrCommentId,String likeId) {
+        likeRepo.deleteById(likeId);
+        return "Like has been successfully removed";
+    }
 
 }
