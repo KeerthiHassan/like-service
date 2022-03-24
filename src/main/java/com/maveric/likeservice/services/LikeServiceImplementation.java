@@ -21,7 +21,7 @@ public class LikeServiceImplementation implements LikeService{
     @Autowired
     LikeRepo likeRepo;
     @Autowired
-   UserFeign userFeign;
+    UserFeign userFeign;
 
     @Override
     public List<LikeResponse> getLikes(String postOrCommentId) {
@@ -46,19 +46,14 @@ public class LikeServiceImplementation implements LikeService{
         return new LikeResponse(like.getLikeId(),like.getPostorcommentId(),userResponse,like.getCreatedAt());
     }
 
-    public Like createLike(String postOrCommentId, Like like) {
-        like.setCreatedAt(LocalDate.now());
-        return likeRepo.save(like);
-    }
     @Override
     public Integer getLikesCount(String postOrCommentId) {
-         List<Like> likeList=(likeRepo.findBypostorcommentId(postOrCommentId));
+        List<Like> likeList=(likeRepo.findBypostorcommentId(postOrCommentId));
         Integer count=likeList.size();
         return count;
     }
 
     @Override
-
     public LikeResponse getLikeDetails(String postOrCommentId,String likeId) {
         Like like=likeRepo.findBylikeId(likeId);
         if(like==null)
@@ -69,16 +64,7 @@ public class LikeServiceImplementation implements LikeService{
 
     @Override
     public String removeLike(String postOrCommentId,String likeId) {
-         likeRepo.deleteById(likeId);
-        return "Like has been successfully removed";
-    }
-    public Like getLikeDetails(String postOrCommentId,String likeId) {
-        return likeRepo.findBylikeId(likeId);
-    }
-    @Override
-    public String removeLike(String postOrCommentId,String likeId) {
         likeRepo.deleteById(likeId);
         return "Like has been successfully removed";
     }
-
 }
