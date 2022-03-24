@@ -1,13 +1,15 @@
 package com.maveric.likeservice.services;
 
+import com.maveric.likeservice.dto.LikeResponse;
+import com.maveric.likeservice.dto.Likedto;
 import com.maveric.likeservice.model.Like;
 
 import java.util.List;
 
 public interface LikeService {
-    List<Like> getLikes(String postOrCommentId);
-
+    List<LikeResponse> getLikes(String postOrCommentId);
+    LikeResponse createLike(String postOrCommentId, Likedto likedto);
     Integer getLikesCount(String postOrCommentId);
-    Like getLikeDetails(String postOrCommentId,String likeId);
-
+    LikeResponse getLikeDetails(String postOrCommentId,String likeId);
+    String removeLike(String postOrCommentId,String likeId);
 }
